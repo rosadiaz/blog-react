@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Post } from '../requests';
+import { Link } from 'react-router-dom';
 
 class PostIndexPage extends Component {
   constructor(props) {
@@ -35,11 +36,8 @@ class PostIndexPage extends Component {
           <ul>
             {this.state.posts.map(post => (
               <li key={post.id}>
-                <small>
-                  <em>{post.id}</em>
-                </small>{" "}
-                <span>{post.title}</span>
-                {/* <Link to={`/posts/${post.id}`}>{post.title}</Link> */}
+                <small><b>{post.id}</b></small>{" - "}
+                <Link to={`/posts/${post.id}`}>{post.title}</Link>
               </li>
             ))}
           </ul>

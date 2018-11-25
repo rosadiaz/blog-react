@@ -6,9 +6,8 @@ class PostShowPage extends Component {
     super(props);
     this.state = {
       loading: true,
-      post: null
+      post: null,
     };
-
   }
 
   componentDidMount() {
@@ -18,6 +17,7 @@ class PostShowPage extends Component {
         post: post,
         loading: false
       });
+      console.log(this.state.post)
     });
   }
 
@@ -39,7 +39,8 @@ class PostShowPage extends Component {
     }
     return (
       <main className="PostShowPage">
-
+        <h2>{this.state.post.id} - {this.state.post.title}</h2>
+        <p>{this.state.post.content}</p>
       </main>
     );
   }
