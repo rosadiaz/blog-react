@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { NavLink } from "react-router-dom";
+
 
 class NavBar extends Component {
   constructor(props) {
@@ -15,11 +17,10 @@ class NavBar extends Component {
   render() {
 
     return (
-      <div>
-        <a>New Post </a>
-        |
-        <a> Index Post </a>
-      </div>
+      <nav className="NavBar">
+        <NavLink exact to="/">All Posts</NavLink>
+        <NavLink exact to="/posts/new">New Post</NavLink>
+      </nav>
     );
   }
 }

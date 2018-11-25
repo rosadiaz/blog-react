@@ -3,15 +3,18 @@ import './App.css';
 import PostNewPage from './PostNewPage';
 import NavBar from './NavBar';
 import PostIndexPage from './PostIndexPage';
+import { BrowserRouter, Route } from "react-router-dom";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <NavBar />
-        <PostIndexPage />
-        <PostNewPage />
-      </div>
+      <BrowserRouter>
+        <div className="App">
+          <NavBar />
+          <Route path="/" exact component={PostIndexPage} />
+          <Route path="/posts/new" exact component={PostNewPage} />
+        </div>
+      </BrowserRouter>
     );
   }
 }

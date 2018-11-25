@@ -7,8 +7,25 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+/* 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+} */
+
+.NavBar {
+  display: flex;
+  padding: 10px;
+}
+
+.NavBar > * {
+  margin: 0 10px;
+}
+
+.NavBar > a {
+  color: lightgrey;
+}
+
+.NavBar > a.active {
+  color: deepskyblue;
 }
