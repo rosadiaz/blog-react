@@ -42,5 +42,15 @@ export const Post = {
     }).then(res => {
       return res.json()
     });
-  }
+  },
+  delete(id) {
+    return fetch(`${BASE_URL}/posts/${id}`, {
+      method: "DELETE",
+      header: {
+        "Content-Type": "application/json"
+      }
+    }).then(res => {
+      return res.json()
+    });
+  },
 };

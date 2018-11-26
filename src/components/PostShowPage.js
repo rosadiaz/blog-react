@@ -11,6 +11,16 @@ class PostShowPage extends Component {
     };
   }
 
+  deletePost = () => {
+    Post.delete(this.state.post.id).then((res) => {
+      console.log("success", res);
+      this.props.history.push(`/`);
+      this.setState = {
+        post: null
+      }
+    });
+  }
+
   componentDidMount() {
     const id = this.props.match.params.id;
     Post.one(id).then(post => {
@@ -41,7 +51,8 @@ class PostShowPage extends Component {
       <main className="PostShowPage">
         <h2>{this.state.post.id} - {this.state.post.title}</h2>
         <p>{this.state.post.content}</p>
-        <Link to={`/posts/${this.state.post.id}/edit`}>Edit</Link>
+        <Link to={`/posts/${this.state.post.id}/edit`}> <button>Edit</button></Link>
+        <button onClick={this.deletePost}>Delete</button>
       </main>
     );
   }
