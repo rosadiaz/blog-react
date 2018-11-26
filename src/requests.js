@@ -31,5 +31,16 @@ export const Post = {
     }).then(res => {
       return res.json()
     });
+  },
+  update(params) {
+    return fetch(`${BASE_URL}/posts/${params.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(params)
+    }).then(res => {
+      return res.json()
+    });
   }
 };

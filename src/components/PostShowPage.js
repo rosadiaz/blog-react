@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Post } from "../requests";
+import { Link } from "react-router-dom"
 
 class PostShowPage extends Component {
   constructor(props) {
@@ -17,7 +18,6 @@ class PostShowPage extends Component {
         post: post,
         loading: false
       });
-      console.log(this.state.post)
     });
   }
 
@@ -41,6 +41,7 @@ class PostShowPage extends Component {
       <main className="PostShowPage">
         <h2>{this.state.post.id} - {this.state.post.title}</h2>
         <p>{this.state.post.content}</p>
+        <Link to={`/posts/${this.state.post.id}/edit`}>Edit</Link>
       </main>
     );
   }
