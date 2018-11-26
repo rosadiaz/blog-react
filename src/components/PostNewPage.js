@@ -7,11 +7,9 @@ class PostNewPage extends Component {
     super(props);
     this.state = {
       loading: true,
-      post: null
+      post: null,
+      errors: []
     };
-
-    // this.deletePost = this.deletePost.bind(this);
-    // this.deleteAnswer = this.deleteAnswer.bind(this);
   }
 
   componentDidMount() {
@@ -20,8 +18,14 @@ class PostNewPage extends Component {
   createPost = (formData) => {
     Post.create(formData)
     .then((res) => {
-      console.log("success", res);
-      this.props.history.push(`/`);
+      if (res.errors) {
+        this.setState({
+          errors: res.errors
+        })
+      } else {
+        console.log("success", res);
+        this.props.history.push(`/`);
+      }
     })
     .catch((error) => {
       console.log(error)
@@ -40,10 +44,13 @@ class PostNewPage extends Component {
     return (
       <main className="PostNewPage">
         <h1>New Post</h1>
+        {this.state.errors.map(error => (
+          <p> {error} </p>
+        ))}
         <PostForm onSubmit={this.createPost}/>
       </main>
 
     );
-  }
+  } 
 }
 export default PostNewPage;

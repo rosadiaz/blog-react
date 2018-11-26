@@ -8,7 +8,8 @@ class PostEditPage extends Component {
 
     this.state = {
       loading: true,
-      post: null
+      post: null,
+      errors: []
     };
   }
 
@@ -25,8 +26,14 @@ class PostEditPage extends Component {
   editPost = (formData) => {
     Post.update(formData)
     .then((res) => {
-      console.log("success", res);
-      this.props.history.push(`/`);
+      if (res.errors) {
+        this.setState({
+          errors: res.errors
+        })
+      } else {
+        console.log("success", res);
+        this.props.history.push(`/`);
+      }
     })
     .catch((error) => {
       console.log(error)
@@ -45,6 +52,9 @@ class PostEditPage extends Component {
     return (
       <main className="PostNewPage">
         <h1>Edit Post</h1>
+        {this.state.errors.map(error => (
+          <p> {error} </p>
+        ))}
         <PostForm post={this.state.post} onSubmit={this.editPost}/>
       </main>
     );
